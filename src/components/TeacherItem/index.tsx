@@ -1,32 +1,50 @@
 import React from "react";
 import "./styles.css"
 import whatsappIcon from "../../assets/images/icons/whatsapp.svg";
+import api from "../../services/api";
 
-function TeacherItem() {
+export interface Teacher {
+    id: number;
+    avatar: string;
+    bio: string;
+    cost: number;
+    name: string;
+    subject: string;
+    whatsapp: string;
+}
+
+interface TeacherItemProps {
+    teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({teacher}) => {
+    function createNewConnection() {
+        api.post("/connections", {
+            user_id: teacher.id
+        }).then();
+    }
     return (
         <article className="teacher-item">
             <header>
-                <img src="https://vignette.wikia.nocookie.net/schoolofrock/images/4/4f/Dewey-finn.jpg/"
-                     alt="Dewey Finn"/>
+                <img src={teacher.avatar}
+                     alt={teacher.name}/>
                 <div>
-                    <strong>Dewey Finn</strong>
-                    <span>Rock</span>
+                    <strong>{teacher.name}</strong>
+                    <span>{teacher.subject}</span>
                 </div>
             </header>
             <p>
-                Um cantor e guitarrista de rock, que acaba de ser expulso da banda No Vacancy.
-                <br/>
-                Vencedor da batalha de bandas.
+                {teacher.bio}
             </p>
             <footer>
                 <p>
                     Preço/hora
-                    <strong>R$ 150,00</strong>
+                    <strong>R$ {teacher.cost}</strong>
                 </p>
-                <button type="button">
+                <a rel="noreferrer noopener" target="_blank" onClick={createNewConnection} href={ `https://wa.me/${teacher.whatsapp}` }>
                     <img src={whatsappIcon} alt="Whatsapp"/>
                     Entrar em contato
-                </button>
+                </a>
             </footer>
         </article>
     );
