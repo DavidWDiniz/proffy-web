@@ -1,7 +1,10 @@
 import React from "react";
-import "./styles.css"
-import whatsappIcon from "../../assets/images/icons/whatsapp.svg";
 import api from "../../services/api";
+
+import "./styles.css"
+
+import whatsappIcon from "../../assets/images/icons/whatsapp.svg";
+
 
 export interface Teacher {
     id: number;

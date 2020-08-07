@@ -1,11 +1,11 @@
 import React, {FormEvent, useState} from "react";
-import "./styles.css";
 import PageHeader from "../../components/PageHeader";
 import TeacherItem, {Teacher} from "../../components/TeacherItem";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
 import api from "../../services/api";
 
+import "./styles.css";
 
 function TeacherList() {
     const [subject, setSubject] = useState("");
